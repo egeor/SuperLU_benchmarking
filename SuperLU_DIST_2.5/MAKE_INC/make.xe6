@@ -21,7 +21,7 @@ PLAT		= _xe6
 #
 #  The name of the libraries to be created/linked to
 #
-DSuperLUroot 	= $(HOME)/hopper/SuperLU_DIST_2.5
+DSuperLUroot 	= $(HOME)/projects/SuperLU_benchmarking/SuperLU_DIST_2.5
 DSUPERLULIB   	= $(DSuperLUroot)/lib/libsuperlu_dist_2.5.a
 #
 BLASDEF	     	= -DUSE_VENDOR_BLAS
