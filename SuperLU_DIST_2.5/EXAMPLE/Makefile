@@ -124,7 +124,7 @@ pzdrive4_ABglobal: $(ZEXMG4) $(DSUPERLULIB)
 	$(LOADER) $(LOADOPTS) $(ZEXMG4) $(LIBS) -lm -o $@
 
 .c.o:
-	$(CC) $(CFLAGS) $(CDEFS) $(BLASDEF) $(INCLUDEDIR) -c $< $(VERBOSE)
+	tau_cc.sh $(TAUOPT) -tau_makefile=$(TAULIBDIR)/Makefile.tau-mpi-pdt-pgi $(CFLAGS) $(CDEFS) $(BLASDEF) $(INCLUDEDIR) -c $< $(VERBOSE)
 
 .f.o:
 	$(FORTRAN) $(FFLAGS) -c $< $(VERBOSE)
