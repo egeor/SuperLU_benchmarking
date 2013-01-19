@@ -347,10 +347,14 @@ int_t pdgstrf
     /* ---------------------------------------------------------------
        Handle the first block column separately to start the pipeline.
        --------------------------------------------------------------- */
+	/* Evangelos: Handle the first block of columns */
     if ( mycol == 0 ) {
 #if ( VAMPIR>=1 )
 	VT_begin(5);
 #endif
+
+/* Evangelos */
+/* TAU comment: First panel factorization */
 	pdgstrf2(options, 0, thresh, Glu_persist, grid, Llu, 
                   U_diag_blk_send_req, stat, info);
 #if ( VAMPIR>=1 )
@@ -419,6 +423,7 @@ int_t pdgstrf
 	krow = PROW( k, grid );
 	kcol = PCOL( k, grid );
 
+	/* Evangelos: Wait for completion of ISend - IRecv */
 	if ( mycol == kcol ) {
 	    lk = LBj( k, grid ); /* Local block number. */
 
@@ -475,12 +480,16 @@ int_t pdgstrf
 
 	scp = &grid->cscp; /* The scope of process column. */
 
+	
+	/* Evangelos: Compute U panel and send it */
 	if ( myrow == krow ) {
 	    /* Parallel triangular solve across process row *krow* --
 	       U(k,j) = L(k,k) \ A(k,j).  */
 #ifdef _CRAY
 	    pdgstrs2(n, k, Glu_persist, grid, Llu, stat, ftcs1, ftcs2, ftcs3);
 #else
+		/* Evangelos */
+		/* TAU comment:  Triangular solve to compute U */
 	    pdgstrs2(n, k, Glu_persist, grid, Llu, stat);
 #endif
 
@@ -496,6 +505,9 @@ int_t pdgstrf
 	    }
 
 	    if ( ToSendD[lk] == YES ) {
+			
+		/* Evangelos */
+		/* TAU comment: send block row U - Just before trailing matrix update  */	
 		for (pi = 0; pi < Pr; ++pi) {
 		    if ( pi != myrow ) {
 #if ( PROFlevel>=1 )
@@ -531,6 +543,9 @@ int_t pdgstrf
 #if ( VAMPIR>=1 )
 		VT_begin(4);
 #endif
+		/* Evangelos */
+		/* TAU comment: Receive block row U - Just before trailing matrix update  */
+
 		/*probe_recv(iam, krow, (4*k+2)%NTAGS, mpi_int_t, scp->comm, 
 		  Llu->bufmax[2]);*/
 		MPI_Recv( Usub_buf, Llu->bufmax[2], mpi_int_t, krow,
@@ -570,6 +585,9 @@ int_t pdgstrf
 	 */
 	msg0 = msgcnt[0];
 	msg2 = msgcnt[2];
+		
+		
+	/* Evangelos: Update only the next panel of the trailing matrix to achieve overlapping (only computations here) */
 	if ( msg0 && msg2 ) { /* L(:,k) and U(k,:) are not empty. */
 	    nsupr = lsub[1]; /* LDA of lusup. */
 	    if ( myrow == krow ) { /* Skip diagonal block L(k,k). */
@@ -740,7 +758,7 @@ int_t pdgstrf
 	    }  /* if jb == k+1 */
 	} /* if L(:,k) and U(k,:) not empty */
 
-
+	/* Evangelos: Factorize the next panel and use Isend - Irecv (to achieve overlapping) */
 	if ( k+1 < nsupers ) {
 	  kcol = PCOL( k+1, grid );
 	  if ( mycol == kcol ) {
@@ -749,6 +767,9 @@ int_t pdgstrf
 #endif
 	    /* Factor diagonal and subdiagonal blocks and test for exact
 	       singularity.  */
+		  
+		/* Evangelos */
+		/* TAU comment: Panel factorization call in the loop */
 	    pdgstrf2(options, k+1, thresh, Glu_persist, grid, Llu,
                      U_diag_blk_send_req, stat, info);
 #if ( VAMPIR>=1 )
@@ -767,6 +788,8 @@ int_t pdgstrf
 		msgcnt[1] = 0;
 	    }
 	    scp = &grid->rscp; /* The scope of process row. */
+		  
+		/* Evangelos: Post I-Sends regarding the newly factorized block column */  
 	    for (pj = 0; pj < Pc; ++pj) {
 		if ( ToSendR[lk][pj] != EMPTY ) {
 		    lusup1 = Lnzval_bc_ptr[lk];
@@ -807,8 +830,9 @@ int_t pdgstrf
 #endif
 	    }
 	  } /* if mycol == Pc(k+1) */
-        } /* if k+1 < nsupers */
+	} /* if k+1 < nsupers */
 
+	/* Evangelos: Update the rest of the trailing matrix (only computations here) */
 	if ( msg0 && msg2 ) { /* L(:,k) and U(k,:) are not empty. */
 	    /* ---------------------------------------------------
 	       Update all other blocks using block row U(k,:)
@@ -1205,6 +1229,8 @@ static void pdgstrf2
     } else  { /* non-diagonal process */
 
 	/* Receive the diagonal block of U */
+		/* Evangelos */
+		/* TAU comment: Communication in panel factorization (only receives) */
         MPI_Recv(ublk_ptr, (nsupc*(nsupc+1))>>1, MPI_DOUBLE,
 		 krow, ((k<<2)+2)%NTAGS, comm, &status);
 
