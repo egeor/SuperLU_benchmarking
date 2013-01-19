@@ -26,6 +26,9 @@
 #
 #######################################################################
 include ../make.inc
+
+TAUOPT=-optVerbose -optTauSelectFile=$(HOME)/projects/SuperLU_benchmarking/SuperLU_DIST_2.5/SRC/select.tau -optKeepFiles
+
 #
 # Precision independent routines
 #
@@ -82,6 +85,8 @@ complex16: $(ZSLUSRC) $(ZPLUSRC) $(ALLAUX) $(LAAUX)
 slamch.o: slamch.c ; $(CC) $(NOOPTS) $(CDEFS) -c $<
 dlamch.o: dlamch.c ; $(CC) $(NOOPTS) $(CDEFS) -c $<
 ##################################
+
+pdgstrf.o: pdgstrf.c ; tau_cc.sh $(TAUOPT) -tau_makefile=$(TAULIBDIR)/Makefile.tau-mpi-pdt-pgi $(CFLAGS) $(CDEFS) $(BLASDEF) -c $< $(VERBOSE)
 
 .c.o:
 	$(CC) $(CFLAGS) $(CDEFS) $(BLASDEF) -c $< $(VERBOSE)
