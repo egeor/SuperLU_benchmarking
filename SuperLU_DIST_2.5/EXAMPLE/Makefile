@@ -32,7 +32,7 @@ include ../make.inc
 INCLUDEDIR = -I../SRC
 
 TAUOPT=-optVerbose -optTauSelectFile=$(HOME)/projects/SuperLU_benchmarking/SuperLU_DIST_2.5/SRC/select.tau -optKeepFiles
-
+THISTHISLOADER = tau_cc.sh $(TAUOPT) -tau_makefile=$(TAULIBDIR)/Makefile.tau-mpi-pdt-pgi
 
 DEXM	= pddrive.o dcreate_matrix.o sp_ienv.o dreadhb.o 
 # pdgstrs_lsum_X1.o pdgstrf_X1.o
@@ -67,64 +67,64 @@ complex16: pzdrive pzdrive1 pzdrive2 pzdrive3 pzdrive4 \
 	   pzdrive3_ABglobal pzdrive4_ABglobal
 
 pddrive: $(DEXM) $(DSUPERLULIB)
-	$(LOADER) $(LOADOPTS) $(DEXM) $(LIBS) -lm -o $@
+	$(THISLOADER) $(LOADOPTS) $(DEXM) $(LIBS) -lm -o $@
 
 pddrive1: $(DEXM1) $(DSUPERLULIB)
-	$(LOADER) $(LOADOPTS) $(DEXM1) $(LIBS) -lm -o $@
+	$(THISLOADER) $(LOADOPTS) $(DEXM1) $(LIBS) -lm -o $@
 
 pddrive2: $(DEXM2) $(DSUPERLULIB)
-	$(LOADER) $(LOADOPTS) $(DEXM2) $(LIBS) -lm -o $@
+	$(THISLOADER) $(LOADOPTS) $(DEXM2) $(LIBS) -lm -o $@
 
 pddrive3: $(DEXM3) $(DSUPERLULIB)
-	$(LOADER) $(LOADOPTS) $(DEXM3) $(LIBS) -lm -o $@
+	$(THISLOADER) $(LOADOPTS) $(DEXM3) $(LIBS) -lm -o $@
 
 pddrive4: $(DEXM4) $(DSUPERLULIB)
-	$(LOADER) $(LOADOPTS) $(DEXM4) $(LIBS) -lm -o $@
+	$(THISLOADER) $(LOADOPTS) $(DEXM4) $(LIBS) -lm -o $@
 
 pddrive_ABglobal: $(DEXMG) $(DSUPERLULIB)
-	$(LOADER) $(LOADOPTS) $(DEXMG) $(LIBS) -lm -o $@
+	$(THISLOADER) $(LOADOPTS) $(DEXMG) $(LIBS) -lm -o $@
 
 pddrive1_ABglobal: $(DEXMG1) $(DSUPERLULIB)
-	$(LOADER) $(LOADOPTS) $(DEXMG1) $(LIBS) -lm -o $@
+	$(THISLOADER) $(LOADOPTS) $(DEXMG1) $(LIBS) -lm -o $@
 
 pddrive2_ABglobal: $(DEXMG2) $(DSUPERLULIB)
-	$(LOADER) $(LOADOPTS) $(DEXMG2) $(LIBS) -lm -o $@
+	$(THISLOADER) $(LOADOPTS) $(DEXMG2) $(LIBS) -lm -o $@
 
 pddrive3_ABglobal: $(DEXMG3) $(DSUPERLULIB)
-	$(LOADER) $(LOADOPTS) $(DEXMG3) $(LIBS) -lm -o $@
+	$(THISLOADER) $(LOADOPTS) $(DEXMG3) $(LIBS) -lm -o $@
 
 pddrive4_ABglobal: $(DEXMG4) $(DSUPERLULIB)
-	$(LOADER) $(LOADOPTS) $(DEXMG4) $(LIBS) -lm -o $@
+	$(THISLOADER) $(LOADOPTS) $(DEXMG4) $(LIBS) -lm -o $@
 
 pzdrive: $(ZEXM) $(DSUPERLULIB)
-	$(LOADER) $(LOADOPTS) $(ZEXM) $(LIBS) -lm -o $@
+	$(THISLOADER) $(LOADOPTS) $(ZEXM) $(LIBS) -lm -o $@
 
 pzdrive1: $(ZEXM1) $(DSUPERLULIB)
-	$(LOADER) $(LOADOPTS) $(ZEXM1) $(LIBS) -lm -o $@
+	$(THISLOADER) $(LOADOPTS) $(ZEXM1) $(LIBS) -lm -o $@
 
 pzdrive2: $(ZEXM2) $(DSUPERLULIB)
-	$(LOADER) $(LOADOPTS) $(ZEXM2) $(LIBS) -lm -o $@
+	$(THISLOADER) $(LOADOPTS) $(ZEXM2) $(LIBS) -lm -o $@
 
 pzdrive3: $(ZEXM3) $(DSUPERLULIB)
-	$(LOADER) $(LOADOPTS) $(ZEXM3) $(LIBS) -lm -o $@
+	$(THISLOADER) $(LOADOPTS) $(ZEXM3) $(LIBS) -lm -o $@
 
 pzdrive4: $(ZEXM4) $(DSUPERLULIB)
-	$(LOADER) $(LOADOPTS) $(ZEXM4) $(LIBS) -lm -o $@
+	$(THISLOADER) $(LOADOPTS) $(ZEXM4) $(LIBS) -lm -o $@
 
 pzdrive_ABglobal: $(ZEXMG) $(DSUPERLULIB)
-	$(LOADER) $(LOADOPTS) $(ZEXMG) $(LIBS) -lm -o $@
+	$(THISLOADER) $(LOADOPTS) $(ZEXMG) $(LIBS) -lm -o $@
 
 pzdrive1_ABglobal: $(ZEXMG1) $(DSUPERLULIB)
-	$(LOADER) $(LOADOPTS) $(ZEXMG1) $(LIBS) -lm -o $@
+	$(THISLOADER) $(LOADOPTS) $(ZEXMG1) $(LIBS) -lm -o $@
 
 pzdrive2_ABglobal: $(ZEXMG2) $(DSUPERLULIB)
-	$(LOADER) $(LOADOPTS) $(ZEXMG2) $(LIBS) -lm -o $@
+	$(THISLOADER) $(LOADOPTS) $(ZEXMG2) $(LIBS) -lm -o $@
 
 pzdrive3_ABglobal: $(ZEXMG3) $(DSUPERLULIB)
-	$(LOADER) $(LOADOPTS) $(ZEXMG3) $(LIBS) -lm -o $@
+	$(THISLOADER) $(LOADOPTS) $(ZEXMG3) $(LIBS) -lm -o $@
 
 pzdrive4_ABglobal: $(ZEXMG4) $(DSUPERLULIB)
-	$(LOADER) $(LOADOPTS) $(ZEXMG4) $(LIBS) -lm -o $@
+	$(THISLOADER) $(LOADOPTS) $(ZEXMG4) $(LIBS) -lm -o $@
 
 .c.o:
 	tau_cc.sh $(TAUOPT) -tau_makefile=$(TAULIBDIR)/Makefile.tau-mpi-pdt-pgi $(CFLAGS) $(CDEFS) $(BLASDEF) $(INCLUDEDIR) -c $< $(VERBOSE)
