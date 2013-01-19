@@ -357,6 +357,7 @@ int_t pdgstrf
 /* TAU comment: First panel factorization */
 	pdgstrf2(options, 0, thresh, Glu_persist, grid, Llu, 
                   U_diag_blk_send_req, stat, info);
+		
 #if ( VAMPIR>=1 )
 	VT_end(5);
 #endif
@@ -772,6 +773,8 @@ int_t pdgstrf
 		/* TAU comment: Panel factorization call in the loop */
 	    pdgstrf2(options, k+1, thresh, Glu_persist, grid, Llu,
                      U_diag_blk_send_req, stat, info);
+		  
+		  
 #if ( VAMPIR>=1 )
 	    VT_end(5);
 #endif
