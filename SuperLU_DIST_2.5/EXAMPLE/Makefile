@@ -32,7 +32,7 @@ include ../make.inc
 INCLUDEDIR = -I../SRC
 
 TAUOPT=-optVerbose -optTauSelectFile=$(HOME)/projects/SuperLU_benchmarking/SuperLU_DIST_2.5/SRC/select.tau -optKeepFiles
-THISTHISLOADER = tau_cc.sh $(TAUOPT) -tau_makefile=$(TAULIBDIR)/Makefile.tau-mpi-pdt-pgi
+THISLOADER = tau_cc.sh $(TAUOPT) -tau_makefile=$(TAULIBDIR)/Makefile.tau-mpi-pdt-pgi
 
 DEXM	= pddrive.o dcreate_matrix.o sp_ienv.o dreadhb.o 
 # pdgstrs_lsum_X1.o pdgstrf_X1.o
