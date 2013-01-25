@@ -1,7 +1,8 @@
 BEGIN_INSTRUMENT_SECTION
-dynamic timer name="first_panel_pdgstrf2" file="pdgstrf.c" line=357 to line=360
-dynamic timer name="U_compute_and_send" file="pdgstrf.c" line=485 to line=578
-dynamic timer name="Update_trailing_1" file="pdgstrf.c" line=591 to line=761
-dynamic timer name="L_panel_factorization_loop" file="pdgstrf.c" line=773 to line=776
-dynamic timer name="Update_trailing_2" file="pdgstrf.c" line=838 to line=986
+dynamic phase name="LU_factorization_call" file="pdgssvx.c" line=1043 to line=1045
+dynamic phase name="first_panel_pdgstrf2" file="pdgstrf.c" line=357 to line=360
+dynamic phase name="U_compute_and_send" file="pdgstrf.c" line=485 to line=578
+dynamic phase name="Update_trailing_1" file="pdgstrf.c" line=591 to line=761
+dynamic phase name="L_panel_factorization_loop" file="pdgstrf.c" line=773 to line=776
+dynamic phase name="Update_trailing_2" file="pdgstrf.c" line=838 to line=986
 END_INSTRUMENT_SECTION

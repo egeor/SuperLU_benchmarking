@@ -88,6 +88,8 @@ dlamch.o: dlamch.c ; $(CC) $(NOOPTS) $(CDEFS) -c $<
 
 pdgstrf.o: pdgstrf.c ; tau_cc.sh $(TAUOPT) -tau_makefile=$(TAULIBDIR)/Makefile.tau-mpi-pdt-pgi $(CFLAGS) $(CDEFS) $(BLASDEF) -c $< $(VERBOSE)
 
+pdgssvx.o: pdgssvx.c ; tau_cc.sh $(TAUOPT) -tau_makefile=$(TAULIBDIR)/Makefile.tau-mpi-pdt-pgi $(CFLAGS) $(CDEFS) $(BLASDEF) -c $< $(VERBOSE)
+
 .c.o:
 	$(CC) $(CFLAGS) $(CDEFS) $(BLASDEF) -c $< $(VERBOSE)
 
