@@ -1,0 +1,2 @@
+Custom parser for tau profile data produced with pprof -s.
+Type tau_parser -h for help.
