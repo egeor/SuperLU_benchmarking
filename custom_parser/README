@@ -1,2 +1,2 @@
 Custom parser for tau profile data produced with pprof -s.
-Type python tau_parser -h for help.
+Type python tau_parser.py -h for help.
