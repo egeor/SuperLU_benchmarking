@@ -36,15 +36,15 @@ THISLOADER = tau_cc.sh $(TAUOPT) -tau_makefile=$(TAULIBDIR)/Makefile.tau-mpi-pdt
 
 DEXM	= pddrive.o dcreate_matrix.o sp_ienv.o dreadtriple.o dreadhb.o 
 # pdgstrs_lsum_X1.o pdgstrf_X1.o
-DEXM1	= pddrive1.o dcreate_matrix.o dreadhb.o
-DEXM2	= pddrive2.o dcreate_matrix.o dreadhb.o
-DEXM3	= pddrive3.o dcreate_matrix.o dreadhb.o
-DEXM4	= pddrive4.o dcreate_matrix.o dreadhb.o
-DEXMG	= pddrive_ABglobal.o dreadhb.o
-DEXMG1	= pddrive1_ABglobal.o dreadhb.o sp_ienv.o 
-DEXMG2	= pddrive2_ABglobal.o dreadhb.o
-DEXMG3	= pddrive3_ABglobal.o dreadhb.o
-DEXMG4	= pddrive4_ABglobal.o dreadhb.o
+DEXM1	= pddrive1.o dcreate_matrix.o dreadtriple.o dreadhb.o
+DEXM2	= pddrive2.o dcreate_matrix.o dreadtriple.o dreadhb.o
+DEXM3	= pddrive3.o dcreate_matrix.o dreadtriple.o dreadhb.o
+DEXM4	= pddrive4.o dcreate_matrix.o dreadtriple.o dreadhb.o
+DEXMG	= pddrive_ABglobal.o dreadtriple.o dreadhb.o
+DEXMG1	= pddrive1_ABglobal.o dreadtriple.o dreadhb.o sp_ienv.o 
+DEXMG2	= pddrive2_ABglobal.o dreadtriple.o dreadhb.o
+DEXMG3	= pddrive3_ABglobal.o dreadtriple.o dreadhb.o
+DEXMG4	= pddrive4_ABglobal.o dreadtriple.o dreadhb.o
 ZEXM	= pzdrive.o zcreate_matrix.o zreadhb.o zreadtriple.o #pzgstrf_X1.o
 ZEXM1	= pzdrive1.o zcreate_matrix.o zreadhb.o
 ZEXM2	= pzdrive2.o zcreate_matrix.o zreadhb.o
