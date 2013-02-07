@@ -1,0 +1,158 @@
+#PBS -q debug
+#PBS -l mppwidth=64
+#PBS -l walltime=00:30:00
+#PBS -V
+
+module load tau
+
+cd ~/projects/SuperLU_benchmarking/SuperLU_DIST_2.5/EXAMPLE
+
+aprun -n 1 ./pddrive -r 1 -c 1 nd_medium_triplet > report_med_1
+
+pprof -s -p > sum_med_1
+
+rm profile.*
+
+aprun -n 4 ./pddrive -r 2 -c 2 nd_medium_triplet > report_med_4
+
+pprof -s -p > sum_med_4
+
+rm profile.*
+
+aprun -n 16 ./pddrive -r 4 -c 4 nd_medium_triplet > report_med_16
+
+pprof -s -p > sum_med_16
+
+rm profile.*
+
+aprun -n 64 ./pddrive -r 8 -c 8 nd_medium_triplet > report_med_64
+
+pprof -s -p > sum_med_64
+
+rm profile.*
+
+aprun -n 1 ./pddrive -r 1 -c 1 nd_large_triplet > report_lar_1
+
+pprof -s -p > sum_lar_1
+
+rm profile.*
+
+aprun -n 4 ./pddrive -r 2 -c 2 nd_large_triplet > report_lar_4
+
+pprof -s -p > sum_lar_4
+
+rm profile.*
+
+aprun -n 16 ./pddrive -r 4 -c 4 nd_large_triplet > report_lar_16
+
+pprof -s -p > sum_lar_16
+
+rm profile.*
+
+aprun -n 64 ./pddrive -r 8 -c 8 nd_large_triplet > report_lar_64
+
+pprof -s -p > sum_lar_64
+
+rm profile.*
+
+aprun -n 1 ./pddrive -r 1 -c 1 nd_very_large > report_vlar_1
+
+pprof -s -p > sum_vlar_1
+
+rm profile.*
+
+aprun -n 4 ./pddrive -r 2 -c 2 nd_very_large > report_vlar_4
+
+pprof -s -p > sum_vlar_4
+
+rm profile.*
+
+aprun -n 16 ./pddrive -r 4 -c 4 nd_very_large > report_vlar_16
+
+pprof -s -p > sum_vlar_16
+
+rm profile.*
+
+aprun -n 64 ./pddrive -r 8 -c 8 nd_very_large > report_vlar_64
+
+pprof -s -p > sum_vlar_64
+
+rm profile.*
+
+cd ~/projects/superlu_static/SuperLU_benchmarking/SuperLU_DIST_2.5/EXAMPLE
+
+aprun -n 1 ./pddrive -r 1 -c 1 nd_medium_triplet > report_med_1
+
+pprof -s -p > sum_med_1
+
+rm profile.*
+
+aprun -n 4 ./pddrive -r 2 -c 2 nd_medium_triplet > report_med_4
+
+pprof -s -p > sum_med_4
+
+rm profile.*
+
+aprun -n 16 ./pddrive -r 4 -c 4 nd_medium_triplet > report_med_16
+
+pprof -s -p > sum_med_16
+
+rm profile.*
+
+aprun -n 64 ./pddrive -r 8 -c 8 nd_medium_triplet > report_med_64
+
+pprof -s -p > sum_med_64
+
+rm profile.*
+
+aprun -n 1 ./pddrive -r 1 -c 1 nd_large_triplet > report_lar_1
+
+pprof -s -p > sum_lar_1
+
+rm profile.*
+
+aprun -n 4 ./pddrive -r 2 -c 2 nd_large_triplet > report_lar_4
+
+pprof -s -p > sum_lar_4
+
+rm profile.*
+
+aprun -n 16 ./pddrive -r 4 -c 4 nd_large_triplet > report_lar_16
+
+pprof -s -p > sum_lar_16
+
+rm profile.*
+
+aprun -n 64 ./pddrive -r 8 -c 8 nd_large_triplet > report_lar_64
+
+pprof -s -p > sum_lar_64
+
+rm profile.*
+
+aprun -n 1 ./pddrive -r 1 -c 1 nd_very_large > report_vlar_1
+
+pprof -s -p > sum_vlar_1
+
+rm profile.*
+
+aprun -n 4 ./pddrive -r 2 -c 2 nd_very_large > report_vlar_4
+
+pprof -s -p > sum_vlar_4
+
+rm profile.*
+
+aprun -n 16 ./pddrive -r 4 -c 4 nd_very_large > report_vlar_16
+
+pprof -s -p > sum_vlar_16
+
+rm profile.*
+
+aprun -n 64 ./pddrive -r 8 -c 8 nd_very_large > report_vlar_64
+
+pprof -s -p > sum_vlar_64
+
+rm profile.*
+
+
+
+
