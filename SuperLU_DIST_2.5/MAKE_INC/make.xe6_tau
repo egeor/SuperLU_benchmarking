@@ -30,7 +30,7 @@ METISLIB    	= -L/usr/common/acts/PARMETIS/3.1.1/cray-xe6_O -lmetis
 PARMETISLIB   	= -L/usr/common/acts/PARMETIS/3.1.1/cray-xe6_O -lparmetis
 
 # Define the required Fortran libraries, if you use C compiler to link
-FLIBS	 	= -lpgf90 -lpgf90_rpm1 -lpgf902 -lpgf90rtl -lpgftnrtl
+FLIBS	 	= -lpgf90 -lpgf90_rpm1
 
 # Define all the libraries
 LIBS	     	= $(DSUPERLULIB) $(BLASLIB) $(PARMETISLIB) $(METISLIB) $(FLIBS)
@@ -48,14 +48,16 @@ RANLIB       	= ranlib
 TAUOPT=-optVerbose -optTauSelectFile=$(HOME)/projects/SuperLU_benchmarking/SuperLU_DIST_2.5/SRC/select.tau -optKeepFiles
 CC           	= tau_cc.sh $(TAUOPT) -tau_makefile=$(TAULIBDIR)/Makefile.tau-mpi-pdt-pgi
 # CFLAGS should be set to be the C flags that include optimization
-CFLAGS          = -c99 -fastsse -DDEBUGlevel=0 -DPRNTlevel=1 #-D_LONGINT
+CFLAGS          = -fast -Mipa=fast,safe -m64 \
+		-DDEBUGlevel=0 -DPRNTlevel=1 -DPROFlevel=0 \
+		-D_LONGINT
 #
 # NOOPTS should be set to be the C flags that turn off any optimization
 NOOPTS		= -O0
 ############################################################################
 # FORTRAN compiler setup
 FORTRAN         = ftn
-F90FLAGS	= -fastsse #-i8
+F90FLAGS	= -fast -Mipa=fast,safe
 ############################################################################
 LOADER	        = tau_cc.sh $(OPT) -tau_makefile=$(TAULIBDIR)/Makefile.tau-mpi-pdt-pgi
 LOADOPTS	= 
