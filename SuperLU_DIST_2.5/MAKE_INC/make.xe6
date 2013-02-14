@@ -47,17 +47,17 @@ RANLIB       	= ranlib
 # C compiler setup
 CC           	= cc
 # CFLAGS should be set to be the C flags that include optimization
-CFLAGS          = -c99 -fastsse -DDEBUGlevel=0 -DPRNTlevel=1 #-D_LONGINT
+CFLAGS          = -fast -Mipa=fast,safe -m64 -DDEBUGlevel=0 -DPRNTlevel=1  -D_LONGINT
 #
 # NOOPTS should be set to be the C flags that turn off any optimization
 NOOPTS		= -O0
 ############################################################################
 # FORTRAN compiler setup
 FORTRAN         = ftn
-F90FLAGS	= -fastsse #-i8
+F90FLAGS	= -fast -Mipa=fast,safe
 ############################################################################
 LOADER	        = cc
-LOADOPTS	= 
+LOADOPTS	= -fast
 ############################################################################
 #  C preprocessor defs for compilation (-DNoChange, -DAdd_, or -DUpCase)
 #
